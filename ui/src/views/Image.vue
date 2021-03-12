@@ -45,7 +45,7 @@
         <a-tooltip>
             <template slot="title">启动镜像</template>
             <a-icon type="play-circle" style="color: #52c41a;font-size: 18px"
-                    @click="openNewContainerConfigModal(record.rep)"/>
+                    @click="openCreateContainerGuide(record.rep)"/>
         </a-tooltip>
 
         <a-divider type="vertical"></a-divider>
@@ -169,7 +169,8 @@
       <div
           style="overflow-y: auto; overflow-x:auto;height: 300px;background-color: #EFEFEF">{{
           pullLog
-        }}</div>
+        }}
+      </div>
 
     </a-modal>
 
@@ -426,9 +427,10 @@ export default {
     close: function (e) {
       this.showDetail = false;
     },
-    openNewContainerConfigModal: function (imageName) {
+    openCreateContainerGuide: function (imageName) {
       this.containerConfig.imageName = imageName;
       this.runImageVisible = true;
+      this.$router.push(`/content/container_create?imageTag=${imageName}`)
     },
     callPullImageApi() {
       if (this.pulling) {
